@@ -1,0 +1,73 @@
+﻿@model DTOEnvio
+@{
+    ViewData["Title"] = "EnvioTracking";
+}
+
+<h1>EnvioTracking</h1>
+
+<h1>Buscar envio por tracking</h1>
+<div class="col-md-4">
+    <form asp-action="EnvioTracking" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label class="control-label">Tracking</label>
+            <input type="text" name="tracking" required class="form-control" />
+
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Buscar" class="btn btn-primary" />
+        </div>
+      
+    </form>
+</div>
+@ViewBag.Message
+@if (Model != null)
+{
+    <hr />
+    <h2>Resultado</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.TipoEnvio)</th>
+                <th>@Html.DisplayNameFor(model => model.Tracking)</th>
+                <th>@Html.DisplayNameFor(model => model.Id)</th>
+                <th>@Html.DisplayNameFor(model => model.Peso)</th>
+                <th>@Html.DisplayNameFor(model => model.Estado)</th>
+                <th>@Html.DisplayNameFor(model => model.FechaCreacion)</th>
+                <th>@Html.DisplayNameFor(model => model.ClienteId)</th>
+                <th>@Html.DisplayNameFor(model => model.FuncionarioId)</th>
+                <th>@Html.DisplayNameFor(model => model.Seguimientos)</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Html.DisplayFor(model => model.TipoEnvio)</td>
+                <td>@Html.DisplayFor(model => model.Tracking)</td>
+                <td>@Html.DisplayFor(model => model.Id)</td>
+                <td>@Html.DisplayFor(model => model.Peso)</td>
+                <td>@Html.DisplayFor(model => model.Estado)</td>
+                <td>@Html.DisplayFor(model => model.FechaCreacion)</td>
+                <td>@Html.DisplayFor(model => model.ClienteId)</td>
+                <td>@Html.DisplayFor(model => model.FuncionarioId)</td>
+                <td>
+                    @if (!Model.Seguimientos.Count.Equals(0))
+                    {
+                        <ul>
+                            @foreach (var seguimiento in Model.Seguimientos)
+                            {
+                                <li>@seguimiento.Comentario - @seguimiento.Fecha</li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <p>Sin seguimientos</p>
+                    }
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}
+    </tbody>
+</table>

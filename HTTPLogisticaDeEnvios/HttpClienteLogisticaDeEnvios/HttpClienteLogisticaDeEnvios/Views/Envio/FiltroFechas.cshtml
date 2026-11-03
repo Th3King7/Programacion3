@@ -1,0 +1,119 @@
+﻿@model IEnumerable<HttpClienteLogisticaDeEnvios.Models.DTOEnvio>
+
+@{
+    ViewData["Title"] = "FiltroFechas";
+}
+
+<h1>FiltroFechas</h1>
+
+<h1>Buscar envio por tracking</h1>
+<div class="col-md-4">
+    <form asp-action="FiltroFechas" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label class="control-label">Fecha inicio</label>
+            <input type="date" name="f1" class="form-control" required />
+
+        </div>
+        <div class="form-group">
+            <label class="control-label">Fecha fin</label>
+            <input type="date" name="f2" class="form-control" required/>
+
+        </div>
+        <div>
+            <label class="control-label">Estado:</label>
+            <select name="estado" class="form-control">
+                <option value="-1">Todos</option>
+                <option value="Finalizado">Finalizado</option>
+                <option value="EnProceso">En Proceso</option>
+            </select>
+
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Buscar" class="btn btn-primary" />
+        </div>
+        @ViewBag.Message
+    </form>
+</div>
+@if (Model != null)
+{
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoEnvio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tracking)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Peso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Estado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaCreacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClienteId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FuncionarioId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Seguimientos)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoEnvio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tracking)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Peso)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaCreacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClienteId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FuncionarioId)
+            </td>
+                <td>
+                    @if (!item.Seguimientos.Count.Equals(0))
+                    {
+                        <ul>
+                            @foreach (var seguimiento in item.Seguimientos)
+                            {
+                                <li>@seguimiento.Comentario - @seguimiento.Fecha</li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <p>Sin seguimientos</p>
+                    }
+                </td>
+        </tr>
+}
+    </tbody>
+</table>
+}

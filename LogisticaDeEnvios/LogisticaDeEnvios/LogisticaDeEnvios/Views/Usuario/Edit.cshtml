@@ -1,0 +1,67 @@
+﻿@model LogisticaDeEnvios.Models.EditUsuarioViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>EditUsuarioViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="DtoEdit.Id" />
+            <div class="form-group">
+                <label asp-for="DtoEdit.Nombre" class="control-label"></label>
+                <input asp-for="DtoEdit.Nombre" class="form-control" />
+                <span asp-validation-for="DtoEdit.Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DtoEdit.Apellido" class="control-label"></label>
+                <input asp-for="DtoEdit.Apellido" class="form-control" />
+                <span asp-validation-for="DtoEdit.Apellido" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DtoEdit.Email" class="control-label"></label>
+                <input asp-for="DtoEdit.Email" class="form-control" />
+                <span asp-validation-for="DtoEdit.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DtoEdit.Password" class="control-label"></label>
+                <input asp-for="DtoEdit.Password" class="form-control" />
+                <span asp-validation-for="DtoEdit.Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DtoEdit.Rol" class="control-label"></label>
+                <select asp-for="DtoEdit.Rol">
+                    <option value="-1">Seleccionar Rol</option>
+                    <option value="0">Administrador</option>
+                    <option value="1">Funcionario</option>
+                    <option value="2">Cliente</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="DtoEdit.AgenciaId" class="control-label"></label>
+                <select asp-for="DtoEdit.AgenciaId" asp-items="Model.Agencia" class="form-control">
+                    <option value="-1">Seleccione Agencia</option>
+                </select>
+            </div>
+
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+        @TempData["Mensaje"]
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

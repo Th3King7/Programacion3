@@ -1,0 +1,89 @@
+﻿@model IEnumerable<LIbreria.DTOs.DTOs.DTOsEnvio.DTOEnvio>
+@using LIbreria.DTOs.DTOs.DTOsEnvio
+
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="TipoEnvio">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoEnvio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tracking)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Estado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClienteId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FuncionarioId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaCreacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Seguimientos)
+            </th>
+          
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TipoEnvio)
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tracking)
+    
+                </td>
+                <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            
+                </td>
+                <td>
+                     @Html.DisplayFor(modelItem => item.ClienteId)
+                </td>
+                <td>
+                        @Html.DisplayFor(modelItem => item.FuncionarioId)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaCreacion)
+            </td>
+            
+                <td>
+                    @if (!item.Seguimientos.Count.Equals(0))
+                    {
+                        <ul>
+                            @foreach (var seguimiento in item.Seguimientos)
+                            {
+                                <li>@seguimiento.Comentario - @seguimiento.Fecha</li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <p>Sin seguimientos</p>
+                    }
+                </td>
+
+
+
+                <td>
+                        @Html.ActionLink("Agregar Seguimiento", "AddSeguimiento", new { id = item.Id })
+                        @Html.ActionLink("Finalizar Envio", "FinEnvio", new { id = item.Id })
+                </td>
+            
+        </tr>
+}
+    </tbody>
+</table>
+@TempData["Mensaje"]

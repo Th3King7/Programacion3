@@ -1,0 +1,40 @@
+﻿@model LogisticaDeEnvios.Models.AltaSeguimientoViewModel
+
+@{
+    ViewData["Title"] = "AddSeguimiento";
+}
+
+<h1>Add Seguimiento</h1>
+
+<h4>DTOSeguimiento</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddSeguimiento">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input type="hidden" asp-for="Envio.Id" />
+
+            <div class="form-group">
+                <label asp-for="Dto.Comentario" class="control-label"></label>
+                <input asp-for="Dto.Comentario" class="form-control" />
+                <span asp-validation-for="Dto.Comentario" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+        @TempData["Mensaje"]
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

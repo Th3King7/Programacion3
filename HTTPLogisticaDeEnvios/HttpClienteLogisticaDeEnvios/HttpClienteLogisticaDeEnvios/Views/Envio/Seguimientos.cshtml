@@ -1,0 +1,45 @@
+﻿@model IEnumerable<HttpClienteLogisticaDeEnvios.Models.DTOSeguimiento>
+
+@{
+    ViewData["Title"] = "Seguimientos";
+}
+
+<h1>Seguimientos</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fecha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comentario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Envio)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fecha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comentario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Envio)
+            </td>
+
+        </tr>
+}
+    </tbody>
+</table>

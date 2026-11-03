@@ -1,0 +1,4 @@
+Nombre: AgenciaBD
+User:kVaRbqFo
+Contraseña:>yNO^WG}W@3'4t11CER>5TheA£Z5}9Ee
+Server=tcp:gestionenvios.database.windows.net,1433;Initial Catalog=AgenciaBD;Persist Security Info=False;User ID=kVaRbqFo;Password={your_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;

@@ -1,0 +1,28 @@
+﻿@model LogisticaDeEnvios.Models.AltaEnvioUrgenteViewModel
+
+<h1>Create Envio Urgente</h1>
+
+<form asp-action="CreateEnvioUrgente">
+    <div class="form-group">
+        <label asp-for="Dto.ClienteEmail" class="control-label"></label>
+        <input asp-for="Dto.ClienteEmail" class="form-control" />
+        <span asp-validation-for="Dto.ClienteEmail" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Dto.Peso" class="control-label"></label>
+        <input asp-for="Dto.Peso" class="form-control" />
+        <span asp-validation-for="Dto.Peso" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Dto.DreccionDestino" class="control-label"></label>
+        <input asp-for="Dto.DreccionDestino" class="form-control" />
+        <span asp-validation-for="Dto.DreccionDestino" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>
+@TempData["Mensaje"]

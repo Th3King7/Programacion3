@@ -1,0 +1,34 @@
+﻿@model LIbreria.DTOs.DTOs.DTOsEnvio.DTOEnvio
+
+@{
+    ViewData["Title"] = "FinEnvio";
+}
+
+<h1>FinEnvio</h1>
+
+<h4>DTOEnvio</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="FinEnvio">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input asp-for="Id" type="hidden" />
+
+            <div class="form-group">
+                <input asp-for="FechaEntrega" type="submit" value="FinalizarEnvio" class="btn btn-primary" />
+            </div>
+        </form>
+        @TempData["Mensaje"]
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
